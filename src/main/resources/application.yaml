@@ -1,0 +1,12 @@
+server:
+  port: 80
+  shutdown: graceful
+openapi:
+  gerrit:
+    base-path: /
+
+jenkins:
+  user: admin
+  jobName: Actions-Workflow
+  token: 117b10085f3168ae0eb9ceef68de62c833
+  uri: http://localhost:8082
