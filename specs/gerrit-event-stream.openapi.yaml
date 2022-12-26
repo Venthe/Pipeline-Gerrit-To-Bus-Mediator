@@ -1,5 +1,4 @@
-# Downgraded due to lack of support for 3.1.0
-openapi: 3.0.3
+openapi: 3.0.4
 info:
   title: "Gerrit"
   version: v3.7.0-520-g6045f9f5a7
@@ -34,7 +33,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/AssigneeChanged"
+              $ref: "#/components/schemas/AssigneeChangedEvent"
       responses:
         "200":
           description: "Event handled correctly"
@@ -45,7 +44,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ChangeAbandoned"
+              $ref: "#/components/schemas/ChangeAbandonedEvent"
       responses:
         "200":
           description: "Event handled correctly"
@@ -56,7 +55,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ChangeDeleted"
+              $ref: "#/components/schemas/ChangeDeletedEvent"
       responses:
         "200":
           description: "Event handled correctly"
@@ -67,7 +66,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ChangeMerged"
+              $ref: "#/components/schemas/ChangeMergedEvent"
       responses:
         "200":
           description: "Event handled correctly"
@@ -78,7 +77,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ChangeRestored"
+              $ref: "#/components/schemas/ChangeRestoredEvent"
       responses:
         "200":
           description: "Event handled correctly"
@@ -89,7 +88,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CommentAdded"
+              $ref: "#/components/schemas/CommentAddedEvent"
       responses:
         "200":
           description: "Event handled correctly"
@@ -100,7 +99,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/DroppedOutput"
+              $ref: "#/components/schemas/DroppedOutputEvent"
       responses:
         "200":
           description: "Event handled correctly"
@@ -111,7 +110,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/HashtagsChanged"
+              $ref: "#/components/schemas/HashtagsChangedEvent"
       responses:
         "200":
           description: "Event handled correctly"
@@ -122,7 +121,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ProjectCreated"
+              $ref: "#/components/schemas/ProjectCreatedEvent"
       responses:
         "200":
           description: "Event handled correctly"
@@ -133,14 +132,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/PatchsetCreated"
+              $ref: "#/components/schemas/PatchsetCreatedEvent"
       responses:
         "200":
           description: "Event handled correctly"
-          content:
-            text/plain:
-              schema:
-                type: string
   #RefUpdated
   /ref-updated:
     post:
@@ -148,7 +143,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/RefUpdated"
+              $ref: "#/components/schemas/RefUpdatedEvent"
       responses:
         "200":
           description: "Event handled correctly"
@@ -159,7 +154,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ReviewerAdded"
+              $ref: "#/components/schemas/ReviewerAddedEvent"
       responses:
         "200":
           description: "Event handled correctly"
@@ -170,7 +165,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ReviewerDeleted"
+              $ref: "#/components/schemas/ReviewerDeletedEvent"
       responses:
         "200":
           description: "Event handled correctly"
@@ -181,7 +176,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/TopicChanged"
+              $ref: "#/components/schemas/TopicChangedEvent"
       responses:
         "200":
           description: "Event handled correctly"
@@ -192,7 +187,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/WorkInProgressStateChanged"
+              $ref: "#/components/schemas/WorkInProgressStateChangedEvent"
       responses:
         "200":
           description: "Event handled correctly"
@@ -203,7 +198,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/PrivateStateChanged"
+              $ref: "#/components/schemas/PrivateStateChangedEvent"
       responses:
         "200":
           description: "Event handled correctly"
@@ -214,7 +209,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/VoteDeleted"
+              $ref: "#/components/schemas/VoteDeletedEvent"
       responses:
         "200":
           description: "Event handled correctly"
@@ -225,7 +220,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ProjectHeadUpdated"
+              $ref: "#/components/schemas/ProjectHeadUpdatedEvent"
       responses:
         "200":
           description: "Event handled correctly"
@@ -262,14 +257,14 @@ components:
           type: integer
           description: |-
             Change number.
-          deprecated: true
+          deprecated: True
         subject:
           type: string
           description: |-
             Description of change.
         owner:
-          description: |-
-            Owner in account attribute.
+          # description: |-
+          #   Owner in account attribute.
           $ref: "#/components/schemas/Account"
         url:
           type: string
@@ -288,12 +283,12 @@ components:
             type: string
         createdOn:
           $ref: "#/components/schemas/Timestamp"
-          description: |-
-            Time in seconds since the UNIX epoch when this change was created.
+          # description: |-
+          #   Time in seconds since the UNIX epoch when this change was created.
         lastUpdated:
           $ref: "#/components/schemas/Timestamp"
-          description: |-
-            Time in seconds since the UNIX epoch when this change was last updated.
+          # description: |-
+          #   Time in seconds since the UNIX epoch when this change was last updated.
         open:
           type: boolean
           description: |-
@@ -332,8 +327,8 @@ components:
             $ref: "#/components/schemas/Trackingid"
         patchSet:
           $ref: "#/components/schemas/PatchSet"
-          description: |-
-            Current patchSet attribute.
+          # description: |-
+          #   Current patchSet attribute.
         patchSets:
           type: array
           description: |-
@@ -364,7 +359,6 @@ components:
             List of all reviewers in account attribute which are added to a change.
           items:
             $ref: "#/components/schemas/Account"
-
     Trackingid:
       type: object
       description: |-
@@ -421,16 +415,16 @@ components:
             Git reference pointing at the revision. This reference is available through the Gerrit Code Review server`s Git interface for the containing change.
         uploader:
           $ref: "#/components/schemas/Account"
-          description: |-
-            Uploader of the patch set in account attribute.
+          # description: |-
+          #   Uploader of the patch set in account attribute.
         author:
           $ref: "#/components/schemas/Account"
-          description: |-
-            Author of this patchset in account attribute.
+          # description: |-
+          #   Author of this patchset in account attribute.
         createdOn:
           $ref: "#/components/schemas/Timestamp"
-          description: |-
-            Time in seconds since the UNIX epoch when this patchset was created.
+          # description: |-
+          #   Time in seconds since the UNIX epoch when this patchset was created.
         kind:
           type: string
           description: |-
@@ -496,12 +490,12 @@ components:
             The previous approval score, only present if the value changed as a result of this event.
         grantedOn:
           $ref: "#/components/schemas/Timestamp"
-          description: |-
-            Time in seconds since the UNIX epoch when this approval was added or last updated.
+          # description: |-
+          #   Time in seconds since the UNIX epoch when this approval was added or last updated.
         by:
           $ref: "#/components/schemas/Account"
-          description: |-
-            Reviewer of the patch set in account attribute.
+          # description: |-
+          #   Reviewer of the patch set in account attribute.
     RefUpdate:
       type: object
       description: |-
@@ -598,9 +592,8 @@ components:
             - IMPOSSIBLE
         by:
           $ref: "#/components/schemas/Account"
-          description: |-
-            The account that applied the label.
-
+          #description: |-
+          #  The account that applied the label.
     Dependency:
       description: |-
         Information about a change or patchset dependency.
@@ -633,12 +626,12 @@ components:
       properties:
         timestamp:
           $ref: "#/components/schemas/Timestamp"
-          description: |-
-            Time in seconds since the UNIX epoch when this comment was added.
+          #description: |-
+          #  Time in seconds since the UNIX epoch when this comment was added.
         reviewer:
           $ref: "#/components/schemas/Account"
-          description: |-
-            The account that added the comment.
+          #description: |-
+          #  The account that added the comment.
         message:
           type: string
           description: |-
@@ -658,8 +651,8 @@ components:
             The line number at which the comment was added.
         reviewer:
           $ref: "#/components/schemas/Account"
-          description: |-
-            The account that added the comment.
+          #description: |-
+          #  The account that added the comment.
         message:
           type: string
           description: |-
@@ -706,171 +699,213 @@ components:
 
     EventCreatedOn:
       $ref: "#/components/schemas/Timestamp"
-      description: |-
-        Time in seconds since the UNIX epoch when this event was created.
-    Event:
+      #description: |-
+      #  Time in seconds since the UNIX epoch when this event was created.
+    EventType:
+      readOnly: True
+      type: string
+      enum:
+        - AssigneeChanged
+        - ChangeAbandoned
+        - ChangeDeleted
+        - ChangeMerged
+        - ChangeRestored
+        - CommentAdded
+        - DroppedOutput
+        - HashtagsChanged
+        - ProjectCreated
+        - PatchsetCreated
+        - RefUpdated
+        - ReviewerAdded
+        - ReviewerDeleted
+        - TopicChanged
+        - WorkInProgressStateChanged
+        - PrivateStateChanged
+        - VoteDeleted
+        - ProjectHeadUpdated
+    AbstractEvent:
+      type: object
       properties:
         type:
-          type: string
+          $ref: "#/components/schemas/EventType"
       required:
-        - type
+        - "type"
       discriminator:
-        propertyName: type
         mapping:
-          assignee-changed: "#/components/schemas/AssigneeChanged"
-          change-abandoned: "#/components/schemas/ChangeAbandoned"
-          change-deleted: "#/components/schemas/ChangeDeleted"
-          change-merged: "#/components/schemas/ChangeMerged"
-          change-restored: "#/components/schemas/ChangeRestored"
-          comment-added: "#/components/schemas/CommentAdded"
-          dropped-output: "#/components/schemas/DroppedOutput"
-          hashtags-changed: "#/components/schemas/HashtagsChanged"
-          project-created: "#/components/schemas/ProjectCreated"
-          patchset-created: "#/components/schemas/PatchsetCreated"
-          ref-updated: "#/components/schemas/RefUpdated"
-          reviewer-added: "#/components/schemas/ReviewerAdded"
-          reviewer-deleted: "#/components/schemas/ReviewerDeleted"
-          topic-changed: "#/components/schemas/TopicChanged"
-          work-in-progress-state-changed: "#/components/schemas/WorkInProgressStateChanged"
-          private-state-changed: "#/components/schemas/PrivateStateChanged"
-          vote-deleted: "#/components/schemas/VoteDeleted"
-          project-head-updated: "#/components/schemas/ProjectHeadUpdated"
-      oneOf:
-        - $ref: "#/components/schemas/AssigneeChanged"
-        - $ref: "#/components/schemas/ChangeAbandoned"
-        - $ref: "#/components/schemas/ChangeDeleted"
-        - $ref: "#/components/schemas/ChangeMerged"
-        - $ref: "#/components/schemas/ChangeRestored"
-        - $ref: "#/components/schemas/CommentAdded"
-        - $ref: "#/components/schemas/DroppedOutput"
-        - $ref: "#/components/schemas/HashtagsChanged"
-        - $ref: "#/components/schemas/ProjectCreated"
-        - $ref: "#/components/schemas/PatchsetCreated"
-        - $ref: "#/components/schemas/RefUpdated"
-        - $ref: "#/components/schemas/ReviewerAdded"
-        - $ref: "#/components/schemas/ReviewerDeleted"
-        - $ref: "#/components/schemas/TopicChanged"
-        - $ref: "#/components/schemas/WorkInProgressStateChanged"
-        - $ref: "#/components/schemas/PrivateStateChanged"
-        - $ref: "#/components/schemas/VoteDeleted"
-        - $ref: "#/components/schemas/ProjectHeadUpdated"
-
-    AssigneeChanged:
+          #AssigneeChanged: "#/components/schemas/AssigneeChangedEvent"
+          #ChangeAbandoned: "#/components/schemas/ChangeAbandonedEvent"
+          #ChangeDeleted: "#/components/schemas/ChangeDeletedEvent"
+          #ChangeMerged: "#/components/schemas/ChangeMergedEvent"
+          #ChangeRestored: "#/components/schemas/ChangeRestoredEvent"
+          #CommentAdded: "#/components/schemas/CommentAddedEvent"
+          #HashtagsChanged: "#/components/schemas/HashtagsChangedEvent"
+          #PatchsetCreated: "#/components/schemas/PatchsetCreatedEvent"
+          #ReviewerAdded: "#/components/schemas/ReviewerAddedEvent"
+          #ReviewerDeleted: "#/components/schemas/ReviewerDeletedEvent"
+          #TopicChanged: "#/components/schemas/TopicChangedEvent"
+          #WorkInProgressStateChanged: "#/components/schemas/WorkInProgressStateChangedEvent"
+          #PrivateStateChanged: "#/components/schemas/PrivateStateChangedEvent"
+          #VoteDeleted: "#/components/schemas/VoteDeletedEvent"
+          RefUpdated: "#/components/schemas/RefUpdatedEvent"
+          ProjectHeadUpdated: "#/components/schemas/ProjectHeadUpdatedEvent"
+          ProjectCreated: "#/components/schemas/ProjectCreatedEvent"
+          DroppedOutput: "#/components/schemas/DroppedOutputEvent"
+        propertyName: type
+    AbstractChangeEvent:
+      type: object
+      discriminator:
+        mapping:
+          AssigneeChanged: "#/components/schemas/AssigneeChangedEvent"
+          ChangeAbandoned: "#/components/schemas/ChangeAbandonedEvent"
+          ChangeDeleted: "#/components/schemas/ChangeDeletedEvent"
+          ChangeMerged: "#/components/schemas/ChangeMergedEvent"
+          ChangeRestored: "#/components/schemas/ChangeRestoredEvent"
+          CommentAdded: "#/components/schemas/CommentAddedEvent"
+          HashtagsChanged: "#/components/schemas/HashtagsChangedEvent"
+          PatchsetCreated: "#/components/schemas/PatchsetCreatedEvent"
+          ReviewerAdded: "#/components/schemas/ReviewerAddedEvent"
+          ReviewerDeleted: "#/components/schemas/ReviewerDeletedEvent"
+          TopicChanged: "#/components/schemas/TopicChangedEvent"
+          WorkInProgressStateChanged: "#/components/schemas/WorkInProgressStateChangedEvent"
+          PrivateStateChanged: "#/components/schemas/PrivateStateChangedEvent"
+          VoteDeleted: "#/components/schemas/VoteDeletedEvent"
+          #RefUpdated: "#/components/schemas/RefUpdatedEvent"
+          #ProjectHeadUpdated: "#/components/schemas/ProjectHeadUpdatedEvent"
+          #ProjectCreated: "#/components/schemas/ProjectCreatedEvent"
+          #DroppedOutput: "#/components/schemas/DroppedOutputEvent"
+        propertyName: type
+      allOf:
+        - $ref: "#/components/schemas/AbstractEvent"
+      properties:
+        change:
+          $ref: "#/components/schemas/Change"
+          #description: |-
+          #  change attribute
+    AssigneeChangedEvent:
+      allOf:
+        - $ref: "#/components/schemas/AbstractChangeEvent"
       description: |-
         Sent when the assignee of a change has been modified.
       type: object
       properties:
-        change:
-          $ref: "#/components/schemas/Change"
-          description: |-
-            change attribute
+        #change:
+        #  $ref: "#/components/schemas/Change"
+        #  description: |-
+        #    change attribute
         changer:
           $ref: "#/components/schemas/Account"
-          description: |-
-            account attribute
+          #description: |-
+          #  account attribute
         oldAssignee:
           type: string
           description: |-
             Assignee before it was changed.
         eventCreatedOn:
           $ref: "#/components/schemas/EventCreatedOn"
-    ChangeAbandoned:
-      type: object
+    ChangeAbandonedEvent:
+      allOf:
+        - $ref: "#/components/schemas/AbstractChangeEvent"
       description: |-
         Sent when a change has been abandoned.
+      type:
+        object
       properties:
-        change:
-          $ref: "#/components/schemas/Change"
-          description: |-
-            change attribute
         patchSet:
           $ref: "#/components/schemas/PatchSet"
-          description: |-
-            patchSet attribute
+          #description: |-
+          #  patchSet attribute
         abandoner:
           $ref: "#/components/schemas/Account"
-          description: |-
-            account attribute
+          #description: |-
+          #  account attribute
         reason:
           type: string
           description: |-
             Reason for abandoning the change.
         eventCreatedOn:
           $ref: "#/components/schemas/EventCreatedOn"
-    ChangeDeleted:
+    ChangeDeletedEvent:
+      allOf:
+        - $ref: "#/components/schemas/AbstractChangeEvent"
       description: |-
         Sent when a change has been deleted.
       type: object
       properties:
-        change:
-          $ref: "#/components/schemas/Change"
-          description: |-
-            change attribute
+        #change:
+        #  $ref: "#/components/schemas/Change"
+        #  description: |-
+        #    change attribute
         deleter:
           $ref: "#/components/schemas/Account"
-          description: |-
-            account attribute
-    ChangeMerged:
+          #description: |-
+          #  account attribute
+    ChangeMergedEvent:
+      allOf:
+        - $ref: "#/components/schemas/AbstractChangeEvent"
       description: |-
         Sent when a change has been merged into the git repository.
       type: object
       properties:
-        change:
-          $ref: "#/components/schemas/Change"
-          description: |-
-            change attribute
+        #change:
+        #  $ref: "#/components/schemas/Change"
+        #  description: |-
+        #    change attribute
         patchSet:
           $ref: "#/components/schemas/PatchSet"
-          description: |-
-            patchSet attribute
+        #  description: |-
+        #    patchSet attribute
         submitter:
           $ref: "#/components/schemas/Account"
-          description: |-
-            account attribute
+        #  description: |-
+        #    account attribute
         newRev:
           type: string
           description: |-
             The state (revision) of the target branch after the operation that closed the change was completed.
-    ChangeRestored:
+    ChangeRestoredEvent:
+      allOf:
+        - $ref: "#/components/schemas/AbstractChangeEvent"
       type: object
       description: |-
         Sent when an abandoned change has been restored.
       properties:
-        change:
-          $ref: "#/components/schemas/Change"
-          description: |-
-            change attribute
+        #change:
+        #  $ref: "#/components/schemas/Change"
+        #  description: |-
+        #    change attribute
         patchSet:
           $ref: "#/components/schemas/PatchSet"
-          description: |-
-            patchSet attribute
+          #description: |-
+          #  patchSet attribute
         restorer:
           $ref: "#/components/schemas/Account"
-          description: |-
-            account attribute
+          # description: |-
+          #   account attribute
         reason:
           type: string
           description: |-
             Reason for restoring the change.
         eventCreatedOn:
           $ref: "#/components/schemas/EventCreatedOn"
-    CommentAdded:
+    CommentAddedEvent:
+      allOf:
+        - $ref: "#/components/schemas/AbstractChangeEvent"
       description: |-
         Sent when a review comment has been posted on a change.
       type: object
       properties:
-        change:
-          $ref: "#/components/schemas/Change"
-          description: |-
-            change attribute
+        #change:
+        #  $ref: "#/components/schemas/Change"
+        #  description: |-
+        #    change attribute
         patchSet:
           $ref: "#/components/schemas/PatchSet"
-          description: |-
-            patchSet attribute
+          # description: |-
+          #   patchSet attribute
         author:
           $ref: "#/components/schemas/Account"
-          description: |-
-            account attribute
+          # description: |-
+          #   account attribute
         approvals:
           type: array
           description: |-
@@ -883,26 +918,30 @@ components:
             Review comment cover message.
         eventCreatedOn:
           $ref: "#/components/schemas/EventCreatedOn"
-    DroppedOutput:
+    DroppedOutputEvent:
+      allOf:
+        - $ref: "#/components/schemas/AbstractEvent"
       description: |-
         Sent to notify a client that events have been dropped.
       type: object
       properties:
         nonExistentElementCreatedSoThatGeneratorWillGenerateThisObject:
           type: string
-    HashtagsChanged:
+    HashtagsChangedEvent:
+      allOf:
+        - $ref: "#/components/schemas/AbstractChangeEvent"
       description: |-
         Sent when the hashtags have been added to or removed from a change.
       type: object
       properties:
-        change:
-          $ref: "#/components/schemas/Change"
-          description: |-
-            change attribute
+        #change:
+        #  $ref: "#/components/schemas/Change"
+        #  description: |-
+        #    change attribute
         editor:
           $ref: "#/components/schemas/Account"
-          description: |-
-            account attribute
+          #description: |-
+          #  account attribute
         added:
           type: array
           description: |-
@@ -923,8 +962,9 @@ components:
             type: string
         eventCreatedOn:
           $ref: "#/components/schemas/EventCreatedOn"
-
-    ProjectCreated:
+    ProjectCreatedEvent:
+      allOf:
+        - $ref: "#/components/schemas/AbstractEvent"
       description: |-
         Sent when a new project has been created.
       type: object
@@ -939,84 +979,92 @@ components:
             The created project head name
         eventCreatedOn:
           $ref: "#/components/schemas/EventCreatedOn"
-    PatchsetCreated:
+    PatchsetCreatedEvent:
+      allOf:
+        - $ref: "#/components/schemas/AbstractChangeEvent"
       description: |-
         Sent when a new change has been uploaded, or a new patch set has been uploaded to an existing change.
       type: object
       properties:
-        change:
-          $ref: "#/components/schemas/Change"
-          description: |-
-            change attribute
+        # change:
+        #   $ref: "#/components/schemas/Change"
+        #   description: |-
+        #     change attribute
         patchSet:
           $ref: "#/components/schemas/PatchSet"
-          description: |-
-            patchSet attribute
+          # description: |-
+          #   patchSet attribute
         uploader:
           $ref: "#/components/schemas/Account"
-          description: |-
-            account attribute
+          # description: |-
+          #   account attribute
         eventCreatedOn:
           $ref: "#/components/schemas/EventCreatedOn"
-    RefUpdated:
+    RefUpdatedEvent:
+      allOf:
+        - $ref: "#/components/schemas/AbstractEvent"
       description: |-
         Sent when a reference is updated in a git repository.
       type: object
       properties:
         submitter:
           $ref: "#/components/schemas/Account"
-          description: |-
-            account attribute
+          # description: |-
+          #   account attribute
         refUpdate:
           $ref: "#/components/schemas/RefUpdate"
-          description: |-
-            account attribute
+          # description: |-
+          #   account attribute
         eventCreatedOn:
           $ref: "#/components/schemas/EventCreatedOn"
-    ReviewerAdded:
+    ReviewerAddedEvent:
+      allOf:
+        - $ref: "#/components/schemas/AbstractChangeEvent"
       description: |-
         Sent when a reviewer is added to a change.
       type: object
       properties:
-        change:
-          $ref: "#/components/schemas/Change"
-          description: |-
-            change attribute
+        # change:
+        #   $ref: "#/components/schemas/Change"
+        #   description: |-
+        #     change attribute
         patchSet:
           $ref: "#/components/schemas/PatchSet"
-          description: |-
-            patchSet attribute
+          # description: |-
+          #   patchSet attribute
         reviewer:
           $ref: "#/components/schemas/Account"
-          description: |-
-            account attribute
+          # description: |-
+          #   account attribute
         adder:
           $ref: "#/components/schemas/Account"
-          description: |-
-            user that added the reviewer as account attribute
+          # description: |-
+          #   user that added the reviewer as account attribute
         eventCreatedOn:
           $ref: "#/components/schemas/EventCreatedOn"
-    ReviewerDeleted:
+    ReviewerDeletedEvent:
+      allOf:
+        - $ref: "#/components/schemas/AbstractChangeEvent"
       description: |-
         Sent when a reviewer (with a vote) is removed from a change.
       type: object
       properties:
-        change:
-          $ref: "#/components/schemas/Change"
-          description: |-
-            change attribute
+        # change:
+        #   $ref: "#/components/schemas/Change"
+        #   description: |-
+        #     change attribute
         patchSet:
           $ref: "#/components/schemas/PatchSet"
-          description: |-
-            patchSet attribute
+          # description: |-
+          #   patchSet attribute
         reviewer:
           $ref: "#/components/schemas/Account"
-          description: |-
-            account attribute
+          # description: |-
+          #   account attribute
         remover:
           $ref: "#/components/schemas/Account"
-          description: |-
-            user that added the reviewer as account attribute
+          # description: |-
+          #   user that added the reviewer as account attribute
         approvals:
           type: array
           description: |-
@@ -1029,85 +1077,92 @@ components:
             Review comment cover message.
         eventCreatedOn:
           $ref: "#/components/schemas/EventCreatedOn"
-    TopicChanged:
+    TopicChangedEvent:
+      allOf:
+        - $ref: "#/components/schemas/AbstractChangeEvent"
       description: |-
         Sent when the topic of a change has been changed.
       type: object
       properties:
-        change:
-          $ref: "#/components/schemas/Change"
-          description: |-
-            change attribute
+        # change:
+        #   $ref: "#/components/schemas/Change"
+        #   description: |-
+        #     change attribute
         changer:
           $ref: "#/components/schemas/Account"
-          description: |-
-            account attribute
+          # description: |-
+          #   account attribute
         oldTopic:
           type: string
           description: |-
             Topic name before it was changed.
         eventCreatedOn:
           $ref: "#/components/schemas/EventCreatedOn"
-
-    WorkInProgressStateChanged:
+    WorkInProgressStateChangedEvent:
+      allOf:
+        - $ref: "#/components/schemas/AbstractChangeEvent"
       description: |-
         Sent when the WIP state of the change has changed.
       type: object
       properties:
-        change:
-          $ref: "#/components/schemas/Change"
-          description: |-
-            change attribute
+        # change:
+        #   $ref: "#/components/schemas/Change"
+        #   description: |-
+        #     change attribute
         patchSet:
           $ref: "#/components/schemas/PatchSet"
-          description: |-
-            patchSet attribute
+          # description: |-
+          #   patchSet attribute
         changer:
           $ref: "#/components/schemas/Account"
-          description: |-
-            account attribute
+          # description: |-
+          #   account attribute
         eventCreatedOn:
           $ref: "#/components/schemas/EventCreatedOn"
-    PrivateStateChanged:
+    PrivateStateChangedEvent:
+      allOf:
+        - $ref: "#/components/schemas/AbstractChangeEvent"
       description: |-
         Sent when the private state of the change has changed.
       type: object
       properties:
-        change:
-          $ref: "#/components/schemas/Change"
-          description: |-
-            change attribute
+        # change:
+        #   $ref: "#/components/schemas/Change"
+        #   description: |-
+        #     change attribute
         patchSet:
           $ref: "#/components/schemas/PatchSet"
-          description: |-
-            patchSet attribute
+          # description: |-
+          #   patchSet attribute
         changer:
           $ref: "#/components/schemas/Account"
-          description: |-
-            account attribute
+          # description: |-
+          #   account attribute
         eventCreatedOn:
           $ref: "#/components/schemas/EventCreatedOn"
-    VoteDeleted:
+    VoteDeletedEvent:
+      allOf:
+        - $ref: "#/components/schemas/AbstractChangeEvent"
       description: |-
         Sent when a vote was removed from a change.
       type: object
       properties:
-        change:
-          $ref: "#/components/schemas/Change"
-          description: |-
-            change attribute
+        # change:
+        #   $ref: "#/components/schemas/Change"
+        #   description: |-
+        #     change attribute
         patchSet:
           $ref: "#/components/schemas/PatchSet"
-          description: |-
-            patchSet attribute
+          #description: |-
+          #  patchSet attribute
         reviewer:
           $ref: "#/components/schemas/Account"
-          description: |-
-            user whose vote was removed as account attribute
+          #description: |-
+          #  user whose vote was removed as account attribute
         remover:
           $ref: "#/components/schemas/Account"
-          description: |-
-            user who removed the vote as account attribute
+          #description: |-
+          #  user who removed the vote as account attribute
         approvals:
           type: array
           description: |-
@@ -1118,7 +1173,9 @@ components:
           type: string
           description: |-
             Review comment cover message.
-    ProjectHeadUpdated:
+    ProjectHeadUpdatedEvent:
+      allOf:
+        - $ref: "#/components/schemas/AbstractEvent"
       description: |-
         Sent when project`s head is updated.
       type: object
